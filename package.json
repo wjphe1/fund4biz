@@ -27,7 +27,6 @@
     "react-modal-video": "^1.2.6",
     "sass": "^1.27.1",
     "simple-react-lightbox": "^3.3.4-2",
-    "swiper": "^6.3.5",
-    "swr": "^0.3.8"
+    "swiper": "^6.3.5"
   }
 }
