@@ -9,13 +9,14 @@ import cn from 'classnames'
 import Cookies from 'js-cookie'
 import Modal from 'react-bootstrap/Modal'
 import { AuthProvider, ProtectRoute } from './auth/auth'
+import { CgMenuGridR } from 'react-icons/cg'
 import { HiMenu, HiUserGroup } from 'react-icons/hi'
 import { FaUserAlt } from 'react-icons/fa'
 import { RiPieChart2Fill, RiShoppingBagFill, RiGridFill } from 'react-icons/ri'
 import { MdCancel } from 'react-icons/md'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-export const siteTitle = 'REEZQA GLOBAL'
+export const siteTitle = 'Fund4biz'
 
 export default function Layout({ children, page, name }) {
 
@@ -39,9 +40,9 @@ export default function Layout({ children, page, name }) {
     return (
         <AuthProvider>
             <ProtectRoute>
-                <div className={styles.main}>
+                <div className={cn({[styles.bigmain]: page === 'home', [styles.main]: page !== 'home'})}>
                     <nav className={styles.navbar}>
-                        <button onClick={() => setShow(!show)} className={styles.burger}><RiGridFill/>&nbsp;Menu</button>
+                        <button onClick={() => setShow(!show)} className={styles.burger}><CgMenuGridR/>&nbsp;Menu</button>
                         <div className="table-cell-dropdown ml-auto nav-icon">
                             <Dropdown>
                                 <Dropdown.Toggle>
@@ -55,11 +56,11 @@ export default function Layout({ children, page, name }) {
                         </div>
                         <div className={`ml-3 ${styles.username}`}>{user.full_name}</div>
                     </nav>
-                    <div className={`${cn({[styles.expand]: show})} ${styles.sidebar}`}>
+                    {page !== 'home' && <div className={`${cn({[styles.expand]: show})} ${styles.sidebar}`}>
                         {user.role !== 'HQ' && <Link href="/admin"><a><div className={`${cn({[styles.ractive]: page === 'reports'})} ${styles.sidenav}`}><div className={styles.rc}><RiPieChart2Fill/></div><span>Reports</span></div></a></Link>}
                         <Link href="/admin/products"><a><div className={`${cn({[styles.pactive]: page === 'products'})} ${styles.sidenav}`}><div className={styles.pc}><RiShoppingBagFill/></div><span>Products</span></div></a></Link>
                         <Link href="/admin/members"><a><div className={`${cn({[styles.uactive]: page === 'users'})} ${styles.sidenav}`}><div className={styles.uc}><HiUserGroup/></div><span>Members</span></div></a></Link>
-                    </div>
+                    </div>}
                     <main className={styles.container}>{children}</main>
                 </div>
                 <Modal show={log} onHide={() => setLog(false)} size="sm" aria-labelledby="confirm-log-out" centered>

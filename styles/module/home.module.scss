@@ -32,28 +32,15 @@
 
 .prodcard {
     background: #FFFFFF;
-    border-radius: 5px;
-    padding: 15px; 
+    border: 1px solid #E3E3E3;
+    border-radius: 8px;
+    padding: 10px 30px; 
     display: flex;
     flex-direction: column;
-    width: calc(25% - 1rem);
-    margin: 0.5rem;
+    width: calc(33.3% - 1rem);
     transition: all 0.3s;
-
-    .prod_imgdiv {
-        width: 100%;
-        padding-top: 100%;
-        position: relative;
-        
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
+    position: relative;
+    margin: 0.5rem;
 
     .prodtitle {
         font-weight: bold;
@@ -69,26 +56,58 @@
         -webkit-box-orient: vertical;
     }
 
-    .keranjang {
-        border: 1px solid #FF6202;
-        background: #FFFFFF;
-        color: #FF6202;
-        border-radius: 20px;
-        padding: 8px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .action_btn_yellow {
+        background: #FFEFEA;
+        border-radius: 15px;
+        border: none;
+        color: #D89616;
+        white-space: nowrap;
+        padding: 5px 15px;
+        margin-right: 10px;
+        font-size: 0.8rem;
+        max-width: 150px;
+        text-align: center;
     }
 
-    .prodprice {
-        color: #FF6202;
-        font-weight: bold;
-        font-size: 1.4rem;
+    .apply {
+        border: none;
+        background: none;
+        border-top: 1px solid #E2E2E2;
+        color: #0E00AF;
+        font-weight: 600;
+        padding: 10px 0 5px;
+        margin-top: 20px;
+    }
+
+    .share {
+        border-radius: 50%;
+        border: none;
+        color: #0E00AF;
+        background: none;
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        font-size: 0.7rem;
+        font-weight: 600;
     }
 }
 
 .prodcard:hover {
-    box-shadow: 0px 25px 60px rgba(163, 163, 163, 0.25);
+    box-shadow: 0px 5px 15px rgba(163, 163, 163, 0.25);
+}
+
+.grant_title {
+    font-size: 2.5rem;
+    line-height: 1.3;
+}
+
+.outline_btn {
+    border: 1px solid #0E00AF;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #0E00AF;
+    background: none;
+    width: 80%;
 }
 
 .catecard {
@@ -125,18 +144,24 @@
     margin: 0 -0.5rem;
 }
 
-@media (max-width: 991px) {
-    .prodcard {
-        width: calc(33% - 1rem);
-    }
+.padwrap {
+    padding: 0 3rem 40px;
 }
 
 @media (max-width: 767px) {
     .prodcard {
         width: calc(50% - 1rem);
-
-        .keranjang {
-            padding: 8px;
-        }
+        padding: 10px 5%;
     }
+
+    .padwrap {
+        padding: 0 1.5rem 40px;
+    }
+}
+
+.carousel_layout {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(146, 146, 146, 0.14);
+    width: 100%;
+    padding: 20px 3%;
 }
