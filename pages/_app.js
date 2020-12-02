@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-circular-progressbar/dist/styles.css';
 import "react-datepicker/dist/react-datepicker.css";
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'swiper/swiper.scss'

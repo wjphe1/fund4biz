@@ -21,7 +21,7 @@ export default class Home extends React.Component {
           <Carousel/>
 
           <div className={styles.padwrap}>
-            <div className={`${utils.h_xl} pt-5`}>All Grants</div>
+            <div className={`${utils.h_xl_light} pt-5`}>All Grants</div>
             <div className={styles.productwrap}>
               <div className={styles.prodcard}>
                 <Link href="/products/generic"><a className={styles.prodtitle}>SME Corp Business Scale-Up Programme</a></Link>

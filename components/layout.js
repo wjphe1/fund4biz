@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import Router from 'next/router'
 import styles from '../styles/module/admin/layout.module.scss'
 import astyl from '../styles/module/admin/admin.module.scss'
+import utils from '../styles/module/utils.module.scss'
 import api from './auth/api'
 import routes from './auth/routes'
 import Link from 'next/link'
 import cn from 'classnames'
 import Cookies from 'js-cookie'
 import Modal from 'react-bootstrap/Modal'
+import { CircularProgressbar } from 'react-circular-progressbar';
 import { AuthProvider, ProtectRoute } from './auth/auth'
 import { CgMenuGridR } from 'react-icons/cg'
 import { HiMenu, HiUserGroup } from 'react-icons/hi'
@@ -18,7 +20,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 export const siteTitle = 'Fund4biz'
 
-export default function Layout({ children, page, name }) {
+export default function Layout({ children, page, name, step, resetStep }) {
 
     const [show, setShow] = useState(false);
     const [log, setLog] = useState(false);
@@ -29,11 +31,7 @@ export default function Layout({ children, page, name }) {
     };
 
     const logout = () => {
-        Cookies.remove('token');
         Cookies.remove('user');
-        Cookies.remove('pid');
-        delete api.defaults.headers.Authorization;
-        api.delete(routes.sign_out);
         Router.reload();
     }
 
@@ -49,17 +47,73 @@ export default function Layout({ children, page, name }) {
                                     <FaUserAlt/>
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                <Dropdown.Item href={'/admin/members/' + user.id}>Account</Dropdown.Item>
+                                <Dropdown.Item as="button" onClick={resetStep}>Account</Dropdown.Item>
                                 <Dropdown.Item as="button" onClick={() => setLog(true)}>Sign Out</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
-                        <div className={`ml-3 ${styles.username}`}>{user.full_name}</div>
+                        <div className={`ml-3 ${styles.username}`}>{user.username}</div>
                     </nav>
-                    {page !== 'home' && <div className={`${cn({[styles.expand]: show})} ${styles.sidebar}`}>
-                        {user.role !== 'HQ' && <Link href="/admin"><a><div className={`${cn({[styles.ractive]: page === 'reports'})} ${styles.sidenav}`}><div className={styles.rc}><RiPieChart2Fill/></div><span>Reports</span></div></a></Link>}
-                        <Link href="/admin/products"><a><div className={`${cn({[styles.pactive]: page === 'products'})} ${styles.sidenav}`}><div className={styles.pc}><RiShoppingBagFill/></div><span>Products</span></div></a></Link>
-                        <Link href="/admin/members"><a><div className={`${cn({[styles.uactive]: page === 'users'})} ${styles.sidenav}`}><div className={styles.uc}><HiUserGroup/></div><span>Members</span></div></a></Link>
+                    {(page !== 'home' && step === 0) && <div className={`${cn({[styles.expand]: show})} ${styles.sidebar}`}>
+                        <div className={utils.h_xl}>How it Works?</div>
+                        <ul className="status-bar mt-3">
+                            <li>
+                                <time className="confirm"></time>
+                                <div className="grey">
+                                    <strong>Complete Your Company Profile</strong> 
+                                    <span className="weak-words">Complete all your company profiles and attactch the required documents</span>
+                                </div>
+                            </li>
+                            <li>
+                                <time className="await"></time>
+                                <div className="grey">
+                                    <strong>Answer a few Questions</strong>
+                                    <span className="weak-words">Answer a few question regarding your product &amp; project</span>
+                                </div>
+                            </li>
+                            <li>
+                                <time className="await"></time>
+                                <div>
+                                    <strong>Done!</strong> 
+                                    <span className="weak-words">We will match you all the grants that you are eligible and the chances of you to getting it</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div className="mt-auto pt-4"><img src="/images/file.png" alt="file" className="w-100"/></div>
+                    </div>}
+                    {(page !== 'home' && step > 0) && <div className={`${cn({[styles.expand]: show})} ${styles.sidebar}`}>
+                        <div className={styles.progressdiv}>
+                            <CircularProgressbar value={(step/3)*100} text={step<=3 ? `${step}/3` : `3/3`} strokeWidth={3}/>
+                            {step < 3 && <div className="pl-3">{3 - step} more step(s) to complete the applications</div>}
+                            {step === 3 && <div className="pl-3">last step to complete the applications</div>}
+                            {step > 3 && <div className="pl-3">Done!</div>}
+                        </div>
+                        <div className={utils.h_md}>Complete Your Profile</div>
+                        <ul className="status-bar mt-3">
+                            <li>
+                                <time className={cn({['confirm current']: step === 1, ['confirm']: step > 1})}></time>
+                                <div className={cn({['grey']: step < 2, ['blue']: step >= 2})}>
+                                    <strong className={cn({['done']: step >= 1})}>Company Profile</strong> 
+                                    <span className="weak-words">Answer few question about your Company and your Team</span>
+                                </div>
+                            </li>
+                            <li>
+                                <time className={cn({['await']: step < 2, ['confirm current']: step === 2, ['confirm']: step > 2 })}></time>
+                                <div className={cn({['grey']: step < 3, ['blue']: step >= 3})}>
+                                    <strong className={cn({['done']: step >= 2})}>Attachments</strong>
+                                    <span className="weak-words">A Descriptions of your product/ project</span>
+                                </div>
+                            </li>
+                            <li>
+                                <time className={cn({['await']: step < 3, ['confirm current']: step >= 3 })}></time>
+                                <div>
+                                    <strong className={cn({['done']: step >= 3})}>Answer A few Questions</strong> 
+                                    <span className="weak-words">Add in your information or extra remarks before you send it to client</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div className="d-flex justify-content-center mt-4"><button disabled className={utils.dbtn}>Get Recommendation</button></div>
                     </div>}
                     <main className={styles.container}>{children}</main>
                 </div>

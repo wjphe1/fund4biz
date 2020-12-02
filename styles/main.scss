@@ -51,7 +51,7 @@ input:focus, button:focus, textarea:focus, select:focus {
 }
 
 input::placeholder {
-  color: #D0D0D0;
+  color: #909090;
 }
 
 p {
@@ -244,12 +244,12 @@ table {
       border-bottom: 3px solid #FFFFFF;
     }
 
-    .nav-link:hover { color: #FF6202; }
+    .nav-link:hover { color: #0E00AF; }
 
     .nav-link.active {
       border: none;
-      border-bottom: 3px solid #FF6202;
-      color: #FF6202;
+      border-bottom: 3px solid #0E00AF;
+      color: #0E00AF;
     }
   }
 
@@ -309,48 +309,8 @@ table {
   to {bottom: 0; opacity: 0;}
 }
 
-// --------------------------------- DatePicker ---------------------------------
-.start-date, .end-date {
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: #5F5F5F;
-  font-weight: 600;
-  width: 100px;
-}
-
-.calendar-icon {
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #E0E0E0;
-}
-
-.date-div {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  border-radius: 25px;
-  margin: 0;
-  cursor: pointer;
-}
-
-.date-div:hover {
-  background: #F2F2F2;
-}
-
-.react-datepicker-popper {
-  top: 5px !important;
-  left: -85px !important;
-}
-
-@media (max-width: 767px) {
-  .react-datepicker-popper {
-    left: -60px !important;
-  }
+.react-datepicker-wrapper {
+  width: 100%;
 }
 
 // ---------------------------------------------- Admin Reports Tabs ----------------------------------------------
@@ -378,13 +338,13 @@ table {
     }
 
     .nav-link:hover { 
-      border: 1px solid #FF6202;
-      color: #FF6202; 
+      border: 1px solid #0E00AF;
+      color: #0E00AF; 
     }
 
     .nav-link.active {
-      background: #FF6202;
-      border: 1px solid #FF6202;
+      background: #0E00AF;
+      border: 1px solid #0E00AF;
       color: #FFFFFF;
     }
   }
@@ -404,7 +364,7 @@ table {
   background: #FFFFFF;
   border: 1px solid #E5E5E5;
   border-radius: 5px;
-  margin: 0 1.5rem;
+  margin: 0 0.5rem;
 
   .nav-tabs {
     border-bottom: 1px solid #E5E5E5;
@@ -424,14 +384,14 @@ table {
     }
 
     .nav-link:hover { 
-      color: #FF6202; 
+      color: #0E00AF; 
       border: none;
     }
 
     .nav-link.active {
       border: none;
-      border-bottom: 3px solid #FF6202;
-      color: #FF6202;
+      border-bottom: 3px solid #0E00AF;
+      color: #0E00AF;
       background: #FFFFFF;
     }
   }
@@ -487,7 +447,7 @@ table {
 .table-cell-dropdown, .dropdown-toggle:focus {
   .dropdown-toggle {
     background: none;
-    color: #FF6202;
+    color: #0E00AF;
     font-size: 1.5rem;
     padding: 0;
     border: none;
@@ -500,7 +460,7 @@ table {
 
   .show .btn-primary.dropdown-toggle, .btn-primary.dropdown-toggle:active {
     background-color: #FFFFFF;
-    color: #FF6202;
+    color: #0E00AF;
   }
 
   .show .btn-primary.dropdown-toggle:focus, .btn-primary.dropdown-toggle:focus, .btn-primary.dropdown-toggle:active {
@@ -518,9 +478,9 @@ table {
   }
 
   .dropdown-item:hover {
-    background: #FFE8DA;
+    background: rgba(9, 62, 243, 0.16);
     font-weight: bold;
-    color: #FF6202;
+    color: #0E00AF;
   }
 }
 
@@ -547,7 +507,7 @@ table {
 
 .btn-dropdown, .dropdown-toggle:focus {
   .dropdown-toggle {
-    background: #FF6202;
+    background: #0E00AF;
     border: none;
     box-sizing: border-box;
     box-shadow: 0px 5px 20px rgba(167, 167, 167, 0.21);
@@ -567,7 +527,7 @@ table {
   }
 
   .show .btn-primary.dropdown-toggle, .btn-primary.dropdown-toggle:active {
-    background: #FF6202;
+    background: #0E00AF;
     border: none;
     box-shadow: 0px 5px 20px rgba(167, 167, 167, 0.21);
     color: #FFFFFF;
@@ -591,9 +551,9 @@ table {
   }
 
   .dropdown-item:hover {
-    background: #FFE8DA;
+    background: rgba(9, 62, 243, 0.16);
     font-weight: bold;
-    color: #FF6202;
+    color: #0E00AF;
   }
 }
 
@@ -612,5 +572,181 @@ table {
 
   .modal-header, .modal-body {
     padding: 0;
+  }
+}
+
+// ---------------------------------- Status Bar -----------------------
+
+.status-bar {
+  width: 100%;
+  padding: 10px 10px 0;
+  margin: 0;
+}
+
+.status-bar li {
+  display: flex;
+}
+
+.status-bar time {
+  position: relative;
+  color: #C4C4C4;
+  padding: 0;
+}
+
+.status-bar .confirm::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: -1px;
+  top: 5px;
+  transform: translateX(50%);
+  border-radius: 50%;
+  background: #0E00AF;
+  border: 1px solid #0E00AF;
+  width: .6em;
+  height: .6em;
+}
+
+.status-bar .current::after {
+  animation: glow 1s infinite alternate;
+}
+
+.status-bar .await::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: -1px;
+  top: 5px;
+  transform: translateX(50%);
+  border-radius: 50%;
+  background: #C4C4C4;
+  border: 1px solid #C4C4C4;
+  width: .6em;
+  height: .6em;
+}
+
+.status-bar div {
+  padding: 0 0 1em 2.5em;
+  position: relative;
+  min-height: 100px;
+}
+
+.status-bar .grey::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 5px;
+  height: 100%;
+  border-left: 2px #C4C4C4 solid;
+}
+
+.status-bar .blue::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 5px;
+  height: 100%;
+  border-left: 2px #0E00AF solid;
+}
+
+.status-bar strong {
+  display: block;
+  font-weight: bold;
+  color: #CECECE;
+  font-size: 0.9rem;
+}
+
+.status-bar strong.done {
+  color: #0E00AF;
+}
+
+.weak-words {
+  font-size: 0.8rem;
+  color: #767676;
+  line-height: 1.1;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0px 0px 0.5px 2px rgba(9, 62, 243, 0.16);
+  }
+  to {
+    box-shadow: 0px 0px 1px 7px rgba(9, 62, 243, 0.16);
+  }
+}
+
+.CircularProgressbar {
+  width: 30% !important;
+  min-width: 30%;
+
+  .CircularProgressbar-trail {
+    stroke: #f1f1f1 !important;
+  }
+  
+  .CircularProgressbar-path {
+    stroke: #0E00AF !important;
+  }
+
+  .CircularProgressbar-text {
+    fill: #0E00AF !important;
+  }
+
+}
+
+.success-progress {
+  background: rgba(0, 255, 133, 0.15);
+  border-radius: 25px;
+  width: 130px;
+  padding: 6px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+
+  .CircularProgressbar {
+    width: 25% !important;
+    min-width: 25%;
+  
+    .CircularProgressbar-trail {
+      stroke: #f1f1f1 !important;
+    }
+    
+    .CircularProgressbar-path {
+      stroke: #1D7100 !important;
+    }
+  
+    .CircularProgressbar-text {
+      fill: #1D7100 !important;
+      font-size: 30px;
+    }
+  
+  }
+}
+
+.warning-progress {
+  background: rgba(255, 0, 0, 0.15);
+  border-radius: 25px;
+  width: 130px;
+  padding: 6px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+
+  .CircularProgressbar {
+    width: 25% !important;
+    min-width: 25%;
+  
+    .CircularProgressbar-trail {
+      stroke: #f1f1f1 !important;
+    }
+    
+    .CircularProgressbar-path {
+      stroke: #AF0000 !important;
+    }
+  
+    .CircularProgressbar-text {
+      fill: #AF0000 !important;
+      font-size: 30px;
+    }
+  
   }
 }

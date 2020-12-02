@@ -15,16 +15,10 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         async function loadUserFromCookies() {
-            const token = Cookies.get('token')
             const current = Cookies.get('user')
-            if (token) {
-                console.log("Got a token in the cookies, validating...")
-                api.defaults.headers.Authorization = token
-            }
             if (current) {
                 const user = JSON.parse(Cookies.get('user'))
                 if (user) setUser(user);
-                console.log(`Current user ${user.full_name} logged in as ${user.role}`)
             }
             setLoading(false)
         }
@@ -43,7 +37,7 @@ export const useAuth = () => useContext(AuthContext)
 export const ProtectRoute = ({ children }) => {
     const router = useRouter()
     const { isAuthenticated, isLoading } = useAuth();
-    if (isLoading || (!isAuthenticated && router.pathname !== '/admin/login')){
+    if (isLoading || (!isAuthenticated)){
       return <Adminlog/>; 
     }
     return children;
