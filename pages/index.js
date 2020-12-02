@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Cookies from 'js-cookie'
+import Router from 'next/router'
 import Layout, { siteTitle } from '../components/layout'
 import Carousel from '../components/carousel'
 import utils from '../styles/module/utils.module.scss'
@@ -9,11 +11,22 @@ import { FiShoppingBag } from 'react-icons/fi';
 import { RiShareBoxFill } from 'react-icons/ri';
 
 export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+  
+
+  resetStep = () => {
+    Cookies.set('step', 0, { expires: 30 });
+    Router.push('/dashboard')
+  }
 
   render () {
     // use this.props.xxx to call global states
     return (
-      <Layout page="home" {...this.props}>
+      <Layout page="home" resetStep={this.resetStep} {...this.props}>
         <Head>
           <title>{siteTitle}</title>
         </Head>
