@@ -27,7 +27,8 @@ export default class Home extends React.Component {
     }
 
     resetStep = () => {
-        this.setState({ step: 1 });
+        this.setState({ step: 0 });
+        Cookies.set('step', 0, { expires: 30 });
     }
 
     componentDidMount() {

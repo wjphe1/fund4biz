@@ -58,23 +58,23 @@ export default function Layout({ children, page, name, step, resetStep }) {
                         <div className={utils.h_xl}>How it Works?</div>
                         <ul className="status-bar mt-3">
                             <li>
-                                <time className="confirm"></time>
+                                <time className="confirm current"></time>
                                 <div className="grey">
-                                    <strong>Complete Your Company Profile</strong> 
+                                    <strong className="done">Complete Your Company Profile</strong> 
                                     <span className="weak-words">Complete all your company profiles and attactch the required documents</span>
                                 </div>
                             </li>
                             <li>
                                 <time className="await"></time>
                                 <div className="grey">
-                                    <strong>Answer a few Questions</strong>
+                                    <strong className="done">Answer a few Questions</strong>
                                     <span className="weak-words">Answer a few question regarding your product &amp; project</span>
                                 </div>
                             </li>
                             <li>
                                 <time className="await"></time>
                                 <div>
-                                    <strong>Done!</strong> 
+                                    <strong className="done">Done!</strong> 
                                     <span className="weak-words">We will match you all the grants that you are eligible and the chances of you to getting it</span>
                                 </div>
                             </li>
