@@ -43,8 +43,6 @@ class Carousel extends React.Component {
                         }}
                         navigation
                         autoplay= {{ delay: 3000 }}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        onSlideChange={() => console.log('slide change')}
                     >
                         <SwiperSlide>
                             <div className={`${styles.prodcard} w-100 m-0`}>

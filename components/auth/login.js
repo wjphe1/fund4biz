@@ -40,7 +40,7 @@ class Adminlog extends React.Component {
     }
     Cookies.set('user', user, { expires: 30 }); // 30 days expiry
 
-    setTimeout(() => { if (Router.href = "/dashboard") { Router.reload() } else { Router.push('/dashboard') } }, 500)
+    setTimeout(() => { if (Router.href == "/dashboard") { Router.reload() } else { Router.push('/dashboard') } }, 500)
   }
 
   render () {
